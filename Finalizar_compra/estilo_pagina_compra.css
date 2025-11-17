@@ -1,0 +1,671 @@
+/* --- Diseño de Finalizar Compra: Lujo Geométrico (Estilo Art Decó Moderno) --- */
+/* Adaptado para coincidir con el diseño gold black.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400&display=swap');
+
+/* Definición de colores clave */
+:root {
+    --bg-primary: #1e1e1e; /* Negro Profundo */
+    --accent-gold: #cfa861; /* Dorado Suave */
+    --text-light: #f0f0f0;
+    --text-secondary: #aaaaaa;
+}
+
+/* Estilos globales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-light);
+    line-height: 1.6;
+    background-image: radial-gradient(circle at center, rgba(30, 30, 30, 1) 0%, rgba(10, 10, 10, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==================== ANIMACIONES ==================== */
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(207, 168, 97, 0.8), 0 0 30px rgba(207, 168, 97, 0.4);
+    }
+}
+
+@keyframes pulse-border {
+    0% { border-color: #cfa861; }
+    50% { border-color: #e9d5a7; }
+    100% { border-color: #cfa861; }
+}
+
+/* ==================== HEADER ==================== */
+
+header {
+    background-color: #111;
+    border-bottom: 4px double var(--accent-gold);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.4s ease;
+    position: relative;
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-family: 'Cinzel', serif;
+    margin: 0;
+    font-size: 2.5em;
+    color: var(--accent-gold);
+    font-weight: 900;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.logo h1:hover {
+    text-shadow: 0 0 20px rgba(207, 168, 97, 0.8);
+    transform: scale(1.05);
+    letter-spacing: 3px;
+}
+
+/* Navegación */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(207, 168, 97, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+nav ul li a:hover::before {
+    left: 100%;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px var(--accent-gold);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+nav ul li a:hover {
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+nav ul li a.active {
+    color: var(--accent-gold);
+    background: rgba(207, 168, 97, 0.1);
+    border-radius: 2px;
+}
+
+nav ul li a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+.search-and-cart {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-and-cart input[type="text"] {
+    padding: 8px 15px;
+    border: 1px solid rgba(207, 168, 97, 0.3);
+    border-radius: 2px;
+    background-color: rgba(30, 30, 30, 0.8);
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.search-and-cart input[type="text"]:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(207, 168, 97, 0.3);
+    outline: none;
+}
+
+.cart-button {
+    background: linear-gradient(to right, #cfa861, #e9d5a7);
+    color: var(--bg-primary);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-weight: 700;
+    border: 1px solid #cfa861;
+    box-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    position: relative;
+    overflow: hidden;
+}
+
+.cart-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.cart-button:hover::before {
+    left: 100%;
+}
+
+.cart-button:hover {
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.9);
+    transform: scale(1.08) translateY(-2px);
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+.cart-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px rgba(207, 168, 97, 0.6);
+}
+
+/* ==================== PÁGINA DE CHECKOUT ==================== */
+
+.checkout-page {
+    flex: 1;
+    padding: 40px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeIn 0.8s ease;
+}
+
+.checkout-page > h2 {
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Cinzel', serif;
+    color: var(--text-light);
+    letter-spacing: 3px;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 15px;
+    animation: fadeInUp 0.6s ease;
+}
+
+.checkout-page > h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: var(--accent-gold);
+    box-shadow: 0 0 5px var(--accent-gold);
+}
+
+.checkout-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* ==================== OPCIONES DE PAGO ==================== */
+
+.payment-options {
+    flex: 2;
+    background-color: #111;
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    /* clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);  <-- Eliminado para que sea rectangular */
+}
+
+.payment-options h3 {
+    margin-top: 0;
+    font-size: 2em;
+    font-family: 'Cinzel', serif;
+    color: var(--accent-gold);
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(207, 168, 97, 0.3);
+    letter-spacing: 2px;
+}
+
+.payment-method {
+    padding: 25px;
+    border: 2px solid rgba(207, 168, 97, 0.3);
+    border-radius: 4px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+.payment-method:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 20px rgba(207, 168, 97, 0.3);
+    transform: translateY(-3px);
+}
+
+.payment-method.selected {
+    border-color: var(--accent-gold);
+    background-color: rgba(207, 168, 97, 0.05);
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.4);
+}
+
+.payment-method h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.4em;
+    font-family: 'Cinzel', serif;
+    color: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+.payment-method h4::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(207, 168, 97, 0.5);
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.payment-method.selected h4::before {
+    border-color: var(--accent-gold);
+    background-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px #111 inset, 0 0 10px rgba(207, 168, 97, 0.5);
+}
+
+.payment-method p {
+    margin: 0 0 10px 0;
+    color: var(--text-secondary);
+    padding-left: 37px;
+    line-height: 1.8;
+}
+
+.bank-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(207, 168, 97, 0.05);
+    border-radius: 4px;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    display: none;
+}
+
+.payment-method.selected .bank-details {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.bank-details h5 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    font-family: 'Cinzel', serif;
+    color: var(--accent-gold);
+}
+
+.bank-details p {
+    font-size: 0.95em;
+    line-height: 1.8;
+    padding-left: 0;
+    color: var(--text-light);
+}
+
+.bank-details hr {
+    border: none;
+    border-top: 1px solid rgba(207, 168, 97, 0.2);
+    margin: 15px 0;
+}
+
+#wallet_container,
+#payment-button-container {
+    margin-top: 20px;
+    padding-left: 37px;
+}
+
+.confirm-purchase-button,
+#pay-mp-button {
+    background: linear-gradient(to right, #cfa861, #e9d5a7);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent-gold);
+    padding: 15px 30px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.confirm-purchase-button::before,
+#pay-mp-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.confirm-purchase-button:hover::before,
+#pay-mp-button:hover::before {
+    left: 100%;
+}
+
+.confirm-purchase-button:hover,
+#pay-mp-button:hover {
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.9);
+    transform: scale(1.05) translateY(-2px);
+}
+
+.confirm-purchase-button:active,
+#pay-mp-button:active {
+    transform: scale(0.98);
+}
+
+/* ==================== RESUMEN DEL PEDIDO ==================== */
+
+.order-summary {
+    flex: 1;
+    background-color: #111;
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    min-width: 350px;
+    position: sticky;
+    top: 40px;
+    /* clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%); <-- Eliminado para que sea rectangular */
+}
+
+.order-summary h3 {
+    margin: 0 0 25px 0;
+    font-size: 1.8em;
+    font-family: 'Cinzel', serif;
+    color: var(--accent-gold);
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(207, 168, 97, 0.3);
+    letter-spacing: 2px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: var(--text-secondary);
+}
+
+.summary-line span:last-child {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.summary-line.total {
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Cinzel', serif;
+    color: var(--accent-gold);
+    border-top: 1px solid rgba(207, 168, 97, 0.3);
+    padding-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.summary-line.total span {
+    color: var(--accent-gold);
+}
+
+/* ==================== ALERTA DE ATENCIÓN ==================== */
+
+.attention-alert {
+    background-color: rgba(207, 168, 97, 0.1);
+    border: 3px solid var(--accent-gold);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 25px;
+    box-shadow: 0 0 15px rgba(207, 168, 97, 0.3);
+    font-size: 0.95em;
+    animation: pulse-border 2s infinite;
+}
+
+.attention-alert p {
+    margin: 5px 0;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.attention-alert strong {
+    color: var(--accent-gold);
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+}
+
+/* ==================== FOOTER ==================== */
+
+footer {
+    background-color: #0d0d0d;
+    color: var(--text-secondary);
+    padding: 40px 5%;
+    border-top: 4px double var(--accent-gold);
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-gold);
+    border-bottom: 1px solid var(--accent-gold);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--accent-gold);
+}
+
+.footer-section p {
+    line-height: 1.8;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: var(--text-secondary);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 992px) {
+    .checkout-container {
+        flex-direction: column-reverse;
+    }
+    
+    .order-summary {
+        position: static;
+        width: 100%;
+        min-width: unset;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 15px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    nav {
+        flex: none;
+        padding-left: 0;
+        width: 100%;
+    }
+
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    nav li {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+
+    .search-and-cart {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .search-and-cart input[type="text"] {
+        flex-grow: 1;
+        max-width: 300px;
+    }
+
+    .checkout-page {
+        padding: 20px 2.5%;
+    }
+
+    .checkout-page > h2 {
+        font-size: 2em;
+    }
+
+    .payment-options,
+    .order-summary {
+        /* Se mantiene 'none' para evitar problemas de compatibilidad en navegadores antiguos 
+           si por alguna razón se aplicara el clip-path por defecto, aunque ya se eliminó del estilo principal. */
+        clip-path: none;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-section {
+        min-width: 100%;
+    }
+}
