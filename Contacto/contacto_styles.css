@@ -1,0 +1,962 @@
+/* Importar fuentes elegantes */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+/* Definición de colores clave */
+:root {
+    --bg-primary: #1e1e1e;
+    --accent-gold: #cfa861;
+    --text-light: #f0f0f0;
+    --text-secondary: #aaaaaa;
+}
+
+/* ==================== ANIMACIONES ==================== */
+
+/* Animación para que el encabezado se deslice hacia abajo al cargar */
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Animación para que el texto principal aparezca de abajo hacia arriba */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 40px));
+    }
+    to { 
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Animación de aparición sutil para secciones y elementos */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animación de entrada desde abajo - MÁS RÁPIDA */
+@keyframes fadeInUpSimple {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de brillo en hover */
+@keyframes shine {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Animación de subrayado animado */
+@keyframes underlineExpand {
+    from {
+        width: 0;
+        left: 50%;
+    }
+    to {
+        width: 100%;
+        left: 0;
+    }
+}
+
+/* Animación de resplandor del carrito */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(207, 168, 97, 0.8), 0 0 30px rgba(207, 168, 97, 0.4);
+    }
+}
+
+/* Animación de rebote para typing indicator */
+@keyframes bounce { 
+    0%, 60%, 100% { transform: translateY(0); } 
+    30% { transform: translateY(-6px); } 
+}
+
+/* Estilos globales para todo el cuerpo de la página */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-light);
+    line-height: 1.6;
+    background-image: radial-gradient(circle at center, rgba(30, 30, 30, 1) 0%, rgba(10, 10, 10, 1) 100%);
+}
+
+/* ==================== HEADER CON ANIMACIONES ==================== */
+header {
+    background-color: #111;
+    border-bottom: 4px double var(--accent-gold);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.4s ease;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Logo con animaciones */
+.logo h1 {
+    font-family: 'Cinzel', serif;
+    margin: 0;
+    font-size: 2em;
+    color: var(--accent-gold);
+    font-weight: 900;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+/* Animación del logo al hacer hover */
+.logo h1:hover {
+    text-shadow: 0 0 20px rgba(207, 168, 97, 0.8);
+    transform: scale(1.05);
+    letter-spacing: 3px;
+}
+
+/* Navegación */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+/* Enlaces de navegación con animaciones */
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+/* Efecto de fondo al hover */
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(207, 168, 97, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+nav ul li a:hover::before {
+    left: 100%;
+}
+
+/* Subrayado animado */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px var(--accent-gold);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Cambio de color al hover */
+nav ul li a:hover {
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+/* Estado activo (página actual) */
+nav ul li a.active {
+    color: var(--accent-gold);
+    background: rgba(207, 168, 97, 0.1);
+    border-radius: 2px;
+}
+
+nav ul li a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+.search-and-cart {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-and-cart input[type="text"] {
+    padding: 8px 15px;
+    border: 1px solid rgba(207, 168, 97, 0.3);
+    border-radius: 2px;
+    background-color: rgba(30, 30, 30, 0.8);
+    color: var(--text-light);
+    width: 150px;
+    transition: all 0.3s ease;
+}
+
+.search-and-cart input[type="text"]:focus {
+    width: 200px;
+    border-color: var(--accent-gold);
+    outline: none;
+    box-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+}
+
+/* Botón del carrito con animaciones */
+.cart-button {
+    background: linear-gradient(to right, #cfa861, #e9d5a7);
+    color: var(--bg-primary);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-weight: 700;
+    border: 1px solid #cfa861;
+    box-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de brillo en el botón del carrito */
+.cart-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.cart-button:hover::before {
+    left: 100%;
+}
+
+/* Hover del botón del carrito */
+.cart-button:hover {
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.9);
+    transform: scale(1.08) translateY(-2px);
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+/* Efecto al hacer click */
+.cart-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 15px rgba(207, 168, 97, 0.6);
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #0d0d0d;
+    color: var(--text-secondary);
+    margin-top: 6%;
+    padding: 40px;
+    padding-bottom: 0.3%;
+    border-top: 4px double var(--accent-gold);
+    /* Animación de aparición sutil para el footer */
+    opacity: 0;
+    animation: fadeIn 1s ease 2s forwards;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2em;
+    color: var(--accent-gold);
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 5px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--accent-gold);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #333;
+}
+
+/* ==========================================================================
+   Estilos Página de Inicio
+   ========================================================================== */
+main {
+    padding: 40px 5%;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 70px;
+    border: 1px solid rgba(207, 168, 97, 0.3);
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+    filter: brightness(35%);
+    opacity: 0.8;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1000px;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.hero-text h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 3em;
+    font-weight: 900;
+    color: var(--accent-gold);
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(207, 168, 97, 0.7);
+    margin: 0 0 30px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: 18px 40px;
+    text-decoration: none;
+    border-radius: 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid var(--accent-gold);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    background: var(--bg-primary);
+    color: var(--accent-gold);
+    box-shadow: 0 0 20px rgba(207, 168, 97, 0.9);
+}
+
+/* Productos destacados */
+.featured-products h2, .category-section h2, .cart-items h2 {
+    text-align: center;
+    font-size: 2.5em;
+    font-family: 'Cinzel', serif;
+    color: var(--text-light);
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 15px;
+    /* Animación de aparición gradual para la sección */
+    animation: fadeIn 1s ease 0.8s both;
+}
+
+.featured-products h2::after, .category-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: var(--accent-gold);
+    box-shadow: 0 0 5px var(--accent-gold);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background-color: #111;
+    border-radius: 4px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    transition: all 0.4s ease;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    /* Animación de aparición individual para las tarjetas */
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Asignar delays a las tarjetas para un efecto escalonado */
+.featured-products .product-card:nth-child(1) { animation-delay: 1.0s; }
+.featured-products .product-card:nth-child(2) { animation-delay: 1.2s; }
+.featured-products .product-card:nth-child(3) { animation-delay: 1.4s; }
+.accessories-section .product-card:nth-child(1) { animation-delay: 1.6s; }
+.accessories-section .product-card:nth-child(2) { animation-delay: 1.8s; }
+
+.product-card:hover {
+    transform: rotateZ(0.5deg) scale(1.03);
+    border: 1px solid var(--accent-gold);
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.5);
+}
+
+.product-card:hover h3 {
+    color: var(--accent-gold);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+.product-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: var(--text-light);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.product-card .price {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+}
+
+.add-to-cart {
+    display: inline-block;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 2px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.add-to-cart:hover::before {
+    left: 100%;
+}
+
+.add-to-cart:hover {
+    background: #e9d5a7;
+    color: var(--bg-primary);
+}
+
+/* ==========================================================================
+   Estilos Página del Carrito
+   ========================================================================== */
+main.cart-page {
+    padding: 2rem 5%;
+}
+
+.cart-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.cart-items {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInUpSimple 0.5s ease forwards;
+}
+
+.cart-item:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 12px rgba(207, 168, 97, 0.3);
+    transform: translateY(-2px);
+}
+
+.item-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(207, 168, 97, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.quantity-controls button {
+    background-color: rgba(207, 168, 97, 0.2);
+    border: none;
+    color: var(--accent-gold);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-primary);
+}
+
+.quantity-controls span {
+    width: 30px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.remove-item {
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.05);
+}
+
+.cart-summary {
+    flex: 1;
+    background-color: #111;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    min-width: 280px;
+}
+
+.cart-summary h3 {
+    margin-top: 0;
+    color: var(--accent-gold);
+    font-family: 'Cinzel', serif;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.summary-line.total {
+    font-weight: bold;
+    font-size: 1.2em;
+    border-top: 1px solid rgba(207, 168, 97, 0.3);
+    padding-top: 10px;
+    margin-top: 10px;
+    color: var(--accent-gold);
+}
+
+.checkout-button {
+    background: linear-gradient(to right, #cfa861, #e9d5a7);
+    color: var(--bg-primary);
+    border: none;
+    padding: 15px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+}
+
+.checkout-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.checkout-button:hover::before {
+    left: 100%;
+}
+
+.checkout-button:hover {
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.7);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Estilos Página de Contacto
+   ========================================================================== */
+.contact-page-main {
+    padding: 60px 5%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeInUpSimple 0.8s ease 0.2s forwards;
+    width: 100%;
+}
+
+.contact-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.2em;
+    margin: 0 0 20px 0;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(207, 168, 97, 0.5);
+    text-align: center;
+}
+
+.contact-header p {
+    font-size: 1.3em;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background-color: #111;
+    border-radius: 8px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid rgba(207, 168, 97, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    min-height: 320px;
+    opacity: 0;
+    animation: fadeInUpSimple 0.6s ease forwards;
+}
+
+.contact-card:nth-child(1) { animation-delay: 0.4s; }
+.contact-card:nth-child(2) { animation-delay: 0.6s; }
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(207, 168, 97, 0.5);
+    border-color: var(--accent-gold);
+}
+
+.contact-card:hover h2 {
+    color: var(--accent-gold);
+}
+
+.contact-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6em;
+    margin: 0;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.contact-card p {
+    color: var(--text-secondary);
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    color: var(--accent-gold);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(207, 168, 97, 0.3));
+    flex-shrink: 0;
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.15) rotate(5deg);
+    filter: drop-shadow(0 0 15px rgba(207, 168, 97, 0.7));
+}
+
+.contact-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.contact-details p {
+    margin: 5px 0;
+    font-size: 1.05em;
+}
+
+.contact-details a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px rgba(207, 168, 97, 0.6);
+}
+
+.contact-button {
+    display: inline-block;
+    background: linear-gradient(to right, #cfa861, #e9d5a7);
+    color: var(--bg-primary);
+    padding: 12px 30px;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    margin-top: auto;
+}
+
+.contact-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-button:hover::before {
+    left: 100%;
+}
+
+.contact-button:hover {
+    box-shadow: 0 0 20px rgba(207, 168, 97, 0.7);
+    transform: scale(1.05);
+}
+
+.email-button {
+    background: rgba(207, 168, 97, 0.2);
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+}
+
+.email-button:hover {
+    background: rgba(207, 168, 97, 0.3);
+    color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   Estilos del Widget de Chat
+   ========================================================================== */
+#chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 360px;
+    height: 520px;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    border: 2px solid var(--accent-gold);
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#chat-widget.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #cfa861, #e9d5a7);
+    color: var(--bg-primary);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-primary);
+    color: var(--accent-gold);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Cinzel', serif;
+    border: 2px var  
+}
